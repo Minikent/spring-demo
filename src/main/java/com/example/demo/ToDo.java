@@ -1,12 +1,11 @@
 package com.example.demo;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigInteger;
+import java.util.Date;
 
 @Entity
+@Table(name = "todo")
 public class ToDo {
 
     @Id
@@ -18,9 +17,12 @@ public class ToDo {
     private Integer parent_id;
     private Integer status;
     private Integer priority;
-    private BigInteger time;
-    private BigInteger time_create;
-    private String email;
+    @Column(name = "time", columnDefinition="DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date time;
+    @Column(name = "time_create", columnDefinition="DATETIME")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date time_create;
 
     public Integer getId() {return id;}
     public void setId(Integer id) {this.id = id;}
@@ -41,9 +43,9 @@ public class ToDo {
 
     public void setParent_id(Integer parent_id) {this.parent_id = parent_id;}
 
-    public BigInteger getTime_create() {return time_create;}
+    public Date getTime_create() {return time_create;}
 
-    public void setTime_create(BigInteger time_create) {this.time_create = time_create;}
+    public void setTime_create(Date time_create) {this.time_create = time_create;}
 
     public Integer getStatus() {return status;}
 
@@ -53,7 +55,7 @@ public class ToDo {
 
     public void setPriority(Integer priority) {this.priority = priority;}
 
-    public BigInteger getTime() {return time;}
+    public Date getTime() {return time;}
 
-    public void setTime(BigInteger time) {this.time = time;}
+    public void setTime(Date time) {this.time = time;}
 }
